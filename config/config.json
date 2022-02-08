@@ -1,0 +1,20 @@
+{
+  "development": {
+    "url": "postgres://mwbydive:94LXyL5QtfECA5QKLW0HehX4wthGiem6@abul.db.elephantsql.com/mwbydive",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
