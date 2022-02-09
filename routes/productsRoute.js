@@ -4,9 +4,14 @@ const Products = require('../models').product;
 
 //GET all products
 router.get('/', async (req, res, next) => {
+  const limit = req.query.limit || 5;
+  const offset = req.query.offset || 0;
+
   try {
-    const allProducts = await Products.findAll();
-    res.status(200).send(allProducts);
+    const allProducts = await Products.findAndCountAll({ limit, offset });
+    res
+      .status(200)
+      .send({ result: allProducts.rows, total: allProducts.count });
   } catch (err) {
     res.status(500).send(err.message);
   }
