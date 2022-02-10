@@ -6,9 +6,24 @@ const Products = require('../models').product;
 router.get('/', async (req, res, next) => {
   const limit = req.query.limit || 5;
   const offset = req.query.offset || 0;
+  const categoryIds = req.query.categoryIds;
 
   try {
-    const allProducts = await Products.findAndCountAll({ limit, offset });
+    const queryOptions = {
+      limit,
+      offset,
+      where: {},
+    };
+
+    if (categoryIds) {
+      queryOptions.where.categoryId = categoryIds;
+    }
+    // if (ratings) {
+    //   queryOptions.where.ratingOption = ratings;
+    // }
+
+    const allProducts = await Products.findAndCountAll(queryOptions);
+
     res
       .status(200)
       .send({ result: allProducts.rows, total: allProducts.count });

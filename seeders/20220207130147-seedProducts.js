@@ -5,7 +5,7 @@ module.exports = {
     await queryInterface.bulkInsert('products', [
       {
         id: 1,
-        title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
+        title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15" Laptops',
         price: 109.95,
         description:
           'Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday',
@@ -62,7 +62,7 @@ module.exports = {
         mainImage:
           'https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg',
         rating: 4.6,
-        categoryId: 4,
+        categoryId: 2,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -75,7 +75,7 @@ module.exports = {
         mainImage:
           'https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg',
         rating: 3.9,
-        categoryId: 1,
+        categoryId: 2,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -88,7 +88,7 @@ module.exports = {
         mainImage:
           'https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg',
         rating: 2,
-        categoryId: 1,
+        categoryId: 2,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
