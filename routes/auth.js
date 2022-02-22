@@ -28,7 +28,7 @@ router.post("/login", async (req, res, next) => {
       const token = toJWT({
         userId: auth_user.id,
       });
-      res.send({ token, message: "success" });
+      res.send({ auth_user, token, message: "success" });
     }
   }
 });
@@ -49,6 +49,21 @@ router.post("/signup", async (req, res, next) => {
   } catch (error) {
     console.log(error);
     next(error);
+  }
+});
+//Update one user by id
+router.put("/users/:userId", auth, async (req, res, next) => {
+  try {
+    const userId = parseInt(req.params.userId);
+    const userToUpdate = await User.findByPk(userId);
+    if (!userToUpdate) {
+      res.status(404).send("User not found");
+    } else {
+      const updatedUser = await userToUpdate.update(req.body);
+      res.json(updatedUser);
+    }
+  } catch (e) {
+    next(e);
   }
 });
 
