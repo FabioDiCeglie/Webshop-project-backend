@@ -1,39 +1,20 @@
-const { Router } = require('express');
+const { Router } = require("express");
 const router = new Router();
-const Products = require('../models').product;
+const Products = require("../models").product;
 
 //GET all products
-router.get('/', async (req, res, next) => {
-  const limit = req.query.limit || 5;
-  const offset = req.query.offset || 0;
-  const categoryIds = req.query.categoryIds;
-
+router.get("/", async (req, res, next) => {
   try {
-    const queryOptions = {
-      limit,
-      offset,
-      where: {},
-    };
+    const allProducts = await Products.findAll();
 
-    if (categoryIds) {
-      queryOptions.where.categoryId = categoryIds;
-    }
-    // if (ratings) {
-    //   queryOptions.where.ratingOption = ratings;
-    // }
-
-    const allProducts = await Products.findAndCountAll(queryOptions);
-
-    res
-      .status(200)
-      .send({ result: allProducts.rows, total: allProducts.count });
+    res.status(200).send(allProducts);
   } catch (err) {
     res.status(500).send(err.message);
   }
 });
 
 //GET product by id
-router.get('/:id', async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
     const productId = req.params.id;
 
